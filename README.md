@@ -8,13 +8,13 @@
     position: relative;
 ">
     <img
-    src="./images-readme/splash.svg"
+    src="./images-readme/Splash.jpg"
     style="
         width: 16rem;
     "
     >
     <img
-    src="./images-readme/home.svg"
+    src="./images-readme/Home.jpg"
     style="
         width: 16rem;
     "
