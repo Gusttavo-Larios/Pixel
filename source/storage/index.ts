@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import StorageInterface from "../interfaces/storage.interface";
+import ImageInterface from "../interfaces/image.interface";
 
-export async function addImage(image: StorageInterface) {
+export async function addImage(image: ImageInterface) {
   try {
-    let storageImages: any = getImages();
+    let storageImages: ImageInterface[] = await getImages();
     storageImages.push(image);
     await AsyncStorage.setItem("@images", JSON.stringify(storageImages));
   } catch (error) {
@@ -11,12 +11,12 @@ export async function addImage(image: StorageInterface) {
   }
 }
 
-export async function removeImage(image: StorageInterface) {
+export async function removeImage(image: ImageInterface) {
   try {
-    const listImages: any = getImages();
-    const index = listImages.indexOf(
-      (item: StorageInterface) => item === image
-    );
+    const listImages: ImageInterface[] = await getImages();
+    const index = listImages.findIndex(
+      (item: ImageInterface) => item.url == image.url
+      );
     const newListImages = listImages.splice(index, 1);
     await AsyncStorage.setItem("@images", JSON.stringify(newListImages));
   } catch (error) {
@@ -27,7 +27,7 @@ export async function removeImage(image: StorageInterface) {
 export async function getImages() {
   try {
     const listImages = await AsyncStorage.getItem("@images");
-    return listImages ? listImages : [];
+    return listImages ? JSON.parse(listImages) : [];
   } catch (error) {
     throw "Is not possible get images";
   }

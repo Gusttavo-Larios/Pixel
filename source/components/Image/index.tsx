@@ -1,10 +1,21 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 import LottieView from "lottie-react-native";
-import { addImage } from "../../storage";
+import ImageInterface from "../../interfaces/image.interface";
 import { Author, Container, Footer } from "./styles";
+import { addImage, removeImage } from "../../storage";
 
-function Image() {
+interface PropsType {
+  data: {
+    item: ImageInterface;
+  };
+}
+
+function Image({ data }: PropsType) {
+  const { author, url } = data.item;
+
+  const [isVisible, setIsVisible] = React.useState(false);
+
   const animationRef = React.useRef<LottieView>(null);
   const [like, setLike] = React.useState(false);
 
@@ -13,22 +24,42 @@ function Image() {
     setLike(!like);
   }
 
+  React.useEffect(() => {
+    onChangeStorage();
+  }, [like]);
+
+  async function onChangeStorage() {
+    if (like) {
+      await addImage({
+        author,
+        url,
+      });
+    } else {
+      await removeImage({
+        author,
+        url,
+      });
+    }
+  }
+
   return (
     <Container
       source={{
-        uri: "https://th.bing.com/th/id/R.96f4799e78bbc5d3c2c54fad0bab73ce?rik=bYl2hAJtayyQ1A&pid=ImgRaw&r=0",
+        uri: url,
       }}
       resizeMode="cover"
+      onLoadStart={() => setIsVisible(false)}
+      onLoadEnd={() => setIsVisible(true)}
     >
-      <Footer>
-        <Author>Facebook</Author>
+      <Footer isVisible={isVisible}>
+        <Author numberOfLines={1}>{author}</Author>
         <Pressable onPress={onChangeLike}>
           <LottieView
             ref={animationRef}
             loop={false}
             autoPlay={false}
             style={{
-              height: 50,  
+              height: 50,
             }}
             source={require("../../../assets/animations/heart-animation.json")}
           />
