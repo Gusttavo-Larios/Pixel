@@ -9,7 +9,3 @@ export const ItemSeparator = styled.View`
   width: 100%;
   height: ${PixelRatio.getPixelSizeForLayoutSize(2.5)}px;
 `;
-export const ListFooter = styled.View`
-  width: 100%;
-  height: ${PixelRatio.getPixelSizeForLayoutSize(4)}px;
-`;

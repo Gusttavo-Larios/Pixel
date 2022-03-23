@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useRoute } from "@react-navigation/native";
-import Menu from "../Menu";
+import Menu from "~/components/Menu";
 import { Container, Title } from "./styles";
 
 type PropsTypes = {

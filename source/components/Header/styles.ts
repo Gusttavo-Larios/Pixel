@@ -17,4 +17,5 @@ type TitleProps = {
 export const Title = styled.Text<TitleProps>`
     color: ${props => props.theme.COLORS.BLACK_900};
     font-size: ${props => PixelRatio.getPixelSizeForLayoutSize(props.size)}px;
+    font-family: ${props => props.theme.FONTS.BLACK};
 `;

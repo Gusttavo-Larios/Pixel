@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 import LottieView from "lottie-react-native";
-import ImageInterface from "../../interfaces/image.interface";
+import ImageInterface from "~/interfaces/image.interface";
+import { addImage, removeImage } from "~/storage";
 import { Author, Container, Footer } from "./styles";
-import { addImage, removeImage } from "../../storage";
 
 interface PropsType {
   data: {

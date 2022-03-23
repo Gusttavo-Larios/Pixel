@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ImageInterface from "../interfaces/image.interface";
+import ImageInterface from "~/interfaces/image.interface";
 
 export async function addImage(image: ImageInterface) {
   try {

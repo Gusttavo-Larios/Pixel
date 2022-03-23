@@ -13,6 +13,7 @@ export const Container = styled.ImageBackground`
 
 export const Author = styled.Text`
   font-size: ${PixelRatio.getPixelSizeForLayoutSize(4.5)}px;
+  font-family: ${props => props.theme.FONTS.REGULAR};
   color: ${(props) => props.theme.COLORS.WHITE_100};
   width: 70%;
   ${{
@@ -20,7 +21,7 @@ export const Author = styled.Text`
       width: 10,
       height: 10,
     },
-    textShadowRadius: 15,
+    textShadowRadius: 5,
     textShadowColor: "#000",
   }}
 `;
